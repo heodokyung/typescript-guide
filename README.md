@@ -1,8 +1,7 @@
 # Typescript-Guide
-타입스트립트에 대하여 정리한 내용입니다.
+## 타입스트립트에 대하여 정리한 내용입니다.
 
-
-### 타입스크립트를 사용해야 하는 이유
+### 👍 타입스크립트를 사용해야 하는 이유
 #### ⭐ Javascript
 - 자바스크립트는 매우 유연한 언어라 에러를 사전에 보여주지 않기 때문에 코드에서 오류가 발생할 가능성이 높아집니다.
 
@@ -31,34 +30,34 @@ a.hello();
 - TypeScript 코드는 JavaScript가 실행되는 모든 곳(브라우저, Node.js 또는 Deno 및 앱 등)에서 JavaScript로 변환될 수 있습니다.
 - TypeScript는 JavaScript를 이해하고 타입 추론(type inference)을 사용하여 추가 코드 없이도 훌륭한 도구를 제공합니다.
 
-### 타입스크립트 코드 테스트
+### 🍓 타입스크립트 코드 테스트
 <a href="https://www.typescriptlang.org/play" target="_blank">https://www.typescriptlang.org/play</a>
 
-### 타입스크립트 핸드북
+### 🍓 타입스크립트 핸드북
 <a href="https://typescript-kr.github.io/pages/basic-types.html" target="_blank">https://typescript-kr.github.io/pages/basic-types.html</a>
 
 
-### 타입스크립트 Type 정의
+### 👍 타입스크립트 Type 정의
 - ✅ 배열: 자료형[]
 - ✅ 숫자: number
 - ✅ 문자열: string
 - ✅ 논리: boolean
 - ✅ optional
 
-#### 명시적 정의(변수 선언 시 타입 정의)
+#### - 명시적 정의(변수 선언 시 타입 정의)
 ```javascript
 let a: boolean = "x"
 // 🚫 boolean 타입에 string타입 할당 불가 알림
 ```
 
-#### 변수만 생성(타입 추론)
+#### - 변수만 생성(타입 추론)
 ```javascript
 let b = "hello"; // b가 string 타입이라고 추론
 b = 1 // string으로 선언한 변수에 number값 할당
 // 🚫 string 타입에 number타입 할당 불가 알림
 ```
 
-#### Alias(별칭) 타입, optional로 선언
+#### - Alias(별칭) 타입, optional로 선언
 <a href="https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-aliases" target="_blank">type-aliases</a>
 
 → 타입값에 ?로 값을 주면 optional
@@ -92,7 +91,7 @@ if(player.age && player.age < 10) {
 }
 ```
 
-#### 함수에서 사용시
+#### - 함수에서 사용시
 ```javascript
 function playerMaker1(name:string) : Player {
     return {
@@ -106,8 +105,9 @@ const nico = playerMaker1("nico")
 nico.age = 12
 ```
 
-#### readonly
+#### - readonly
 JavaScript에서는 mutability(변경 가능성)이 기본값이지만 타입스크립트에서는 readonly를 통해 읽기 전용으로 만들 수 있습니다.
+
 ```javascript
 interface Pizza {
   readonly x: number;
@@ -125,19 +125,19 @@ const numbers: readonly number[] = [1, 2, 3, 4]
 ```
 <a href="https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-func.html#readonly-and-const" target="_blank">readonly-and-const</a>
 
-#### Tuple
+#### - Tuple
 정해진 개수와 순서에 따라 배열 선언
 ```javascript
 const player: [string, number, boolean] = ["nico", 1, true]
 // ❗ readonly도 사용가능 ⇒ readonly [...] 형태
 ```
 
-#### undefined, null, any
+#### - undefined, null, any
 - any: 아무 타입
 - undefined: 선언X 할당X
 - null: 선언O 할당X
 
-#### unknown
+#### - unknown
 unknown타입은 모든 값을 나타냅니다. 이것은 any타입과 비슷하지만 any보다 unknown이 더 안전합니다. 이유는 unknown값으로 작업을 수행하는 것은 합법적이지 않기 때문입니다.
 ```javascript
 // 예시1
@@ -161,7 +161,7 @@ function hello2(a: unknown) {
 }
 ```
 
-#### void
+#### - void
 void는 값을 반환하지 않는 함수의 반환 값을 나타냅니다. 함수에 return 문이 없거나 해당 return 문에서 명시적 값을 반환하지 않을 때 항상 유추되는 타입입니다.
 ```javascript
 function hello() {
@@ -173,7 +173,7 @@ function noop() {
 }
 ```
 
-#### never
+#### - never
 일부 함수는 값을 반환하지 않습니다. 이는 함수가 예외를 throw하거나 프로그램 실행을 종료함을 의미합니다.
 ```javascript
 function fail(msg: string): never {
@@ -197,8 +197,8 @@ function temp(name:string|number):never {
 
 
 
-### Function
-#### Call Signatures
+### 👍 Function
+#### - Call Signatures
 프로퍼티로 호출 가능한 것을 설명하려면 객체 타입에 Call Signature을 작성할 수 있습니다. Call(=Function) Signature란 함수의 매개변수와 반환 값의 타입을 모두 type으로 미리 선언하는 것을 말하며 Call Signatures는 다음과 같이 함수의 매개 변수(parameter)와 반환 타입을 지정합니다.
 ```javascript
 type Add = {
@@ -208,7 +208,7 @@ type Add = {
 const add: Add = (a, b) => a + b
 ```
 
-##### 주의
+##### 😵 주의
 ```javascript
 const add:Add = (a,b) => a+b
 // 위의 Arrow함수를 일반 함수로 풀면 다음과 같게 됩니다.
@@ -239,7 +239,7 @@ function hello(fn: PizzaFunction) {
 <a href="https://www.typescriptlang.org/docs/handbook/2/functions.html#call-signatures" target="_blank">call-signatures</a>
 
 
-#### Overloads
+#### - Overloads
 하나의 함수가 복수의 Call Signature를 가질 때 발생합니다.  동일한 이름에 매개 변수와 매개 변수 타입 또는 리턴 타입이 다른 여러 버전의 함수를 만드는 것을 말합니다. TypeScript에서는 오버로드 signatures을 작성하여 "다양한 방식으로 호출할 수 있는 함수"를 지정할 수 있습니다.
 ```javascript
 type Add={
@@ -257,7 +257,7 @@ add(1,2,3)
 ```
 <a href="https://www.typescriptlang.org/docs/handbook/2/functions.html#function-overloads" target="_blank">overloads</a>
 
-#### polymorphism(다형성)
+#### - polymorphism(다형성)
 다형성이란, 여러 타입을 받아들임으로써 여러 형태를 가지는 것을 의미합니다. 인자들과 반환값에 대하여 형태(타입)에 따라 그에 상응하는 형태(타입)를 갖을 수 있습니다.
 
 타입스크립트에서 다형성을 가지기 위해선 제너릭을 사용합니다.
@@ -265,8 +265,7 @@ add(1,2,3)
 제네릭은 선언 시점이 아니라 생성 시점에 타입을 명시하여 하나의 타입만이 아닌 다양한 타입을 사용할 수 있도록 하는 기법이라 정리할 수 있습니다.
 
 
-
-##### 재너릭을 사용하지 않았을 때
+##### 😵 재너릭을 사용하지 않았을 때
 ```javascript
 // 모든 타입을 다 적어주어야 함
 type SuperPrint = {
@@ -287,7 +286,7 @@ superPrint([1, "b", true])
 ```
 위와 같이 다양한 경우를 커버하는 함수를 작성할 때, 모든 조합의 Call Signature를 concrete type으로 적어주는 일은 번거롭습니다.
 
-##### 재너릭을 사용할 때
+##### 😊 재너릭을 사용할 때
 ```javascript
 type SuperPrint = {
   (arr: T[]): T
@@ -309,7 +308,7 @@ superPrint([1, "b", true])
 ```
 위의 코드처럼 type에 Generic을 할당하면 호출된 값으로 concrete type을 가지는 Call Signature를 역으로 보여주는 다형성(Polymorphism)을 가지게 됩니다
 
-##### 함수에서 제너릭을 사용할 때
+##### 😊 함수에서 제너릭을 사용할 때
 ```javascript
 function identity< Type >(arg: Type): Type {
   return arg;
@@ -325,7 +324,7 @@ let output = identity("myString"); // 두 번째 방법
 // 두 번째 방법은 type argument inference(타입 인수 유추)를 사용합니다. 즉, 컴파일러가 전달하는 인수 유형에 따라 자동으로 Type 값을 설정하기를 원합니다.
 ```
 
-##### any를 넣는 것과 Generic의 차이는 무엇일까요?
+##### 😒 any를 넣는 것과 Generic의 차이는 무엇일까요?
 ```javascript
 // Any
 type SuperPrint = {
@@ -369,9 +368,9 @@ let a = superPrint([1, "b", true], "hi");
 <a href="https://www.typescriptlang.org/docs/handbook/2/generics.html" target="_blank">Generics</a>
 
 
-### classes And Interfaces
-#### classes
-##### 추상(abstract) 클래스
+### 👍 classes And Interfaces
+#### - classes
+#### - 추상(abstract) 클래스
 추상 클래스는 오직 다른 클래스가 상속받을 수 있는 클래스로 직접 새로운 인스턴스를 만들 수는 없습니다.
 
 ```javascript
@@ -392,7 +391,7 @@ class Player extends User {
   }
 }
 ```
-##### 접근 가능한 위치 정리
+##### 👌 접근 가능한 위치 정리
 | 구분　     | 선언한 클래스 내 | 상속받은 클래스 내 | 인스턴스 |
 | :--------- | :--------------: | :-----:            | :-----:  |
 | private    |    ⭕            |  ❌                |  ❌   |
@@ -462,7 +461,7 @@ console.log("NOT DELETE KIMCHI:", dict.def("kimchi"));
 <a href="https://www.typescriptlang.org/docs/handbook/2/classes.html" target="_blank">classes</a>
 
 
-#### Static Members
+#### - Static Members
 클래스에는 static 멤버가 있을 수 있습니다. 이 멤버는 클래스의 특정 인스턴스와 연결되지 않습니다. 클래스 생성자 객체 자체를 통해 액세스할 수 있습니다. static 멤버는 동일한 public, protected 및 private 과 함께 사용할 수도 있습니다. static Methods는 클래스를 생성안해도 사용이 가능합니다.
 
 ```javascript
@@ -477,7 +476,7 @@ MyClass.printX();
 ```
 <a href="https://www.typescriptlang.org/docs/handbook/2/classes.html#static-members" target="_blank">static-members</a>
 
-#### Interfaces
+#### - Interfaces
 객체의 모양을 특정해주기 위해 사용합니다. 여기서는 firstName 및 lastName 필드가 있는 객체를 설명하는 인터페이스를 사용합니다.
 
 ```javascript
@@ -488,8 +487,8 @@ interface Person {
 ```
 <a href="https://www.typescriptlang.org/docs/handbook/typescript-tooling-in-5-minutes.html#interfaces" target="_blank">interfaces</a>
 
-#### implements
-implements을 사용하여 클래스가 특정 인터페이스를 충족하는지 확인할 수 있습니다. 클래스를 올바르게 구현하지 못하면 오류가 발생합니다. implements절은 클래스가 인터페이스 유형으로 처리될 수 있는지 확인하는 것입니다. 클래스의 유형이나 메서드는 전혀 변경하지 않습니다. 또한 클래스는 여러 인터페이스를 구현할 수도 있습니다. 
+#### - implements
+implements을 사용하여 클래스가 특정 인터페이스를 충족하는지 확인할 수 있습니다. 클래스를 올바르게 구현하지 못하면 오류가 발생합니다. implements절은 클래스가 인터페이스 유형으로 처리될 수 있는지 확인하는 것입니다. 클래스의 유형이나 메서드는 전혀 변경하지 않습니다. 또한 클래스는 여러 인터페이스를 구현할 수도 있습니다.
 
 ```javascript
 // 클래스 C는 A, B를 구현합니다.
@@ -511,21 +510,21 @@ class Sonar implements Pingable {
 <a href="https://www.typescriptlang.org/docs/handbook/2/classes.html#implements-clauses" target="_blank">implements</a>
 
 
-#### Type Aliases과 Interfaces의 차이점
+#### - Type Aliases과 Interfaces의 차이점
 Type Aliases과 인터페이스는 매우 유사하며 많은 경우 자유롭게 선택할 수 있습니다. 인터페이스의 거의 모든 기능은 type에서 사용할 수 있으며, 주요 차이점은 type을 다시 열어 새 속성을 추가할 수 없는 것입니다. 반면 인터페이스는 항상 확장 가능합니다.
 
 <a href="https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces" target="_blank">differences-between-type-aliases-and-interfaces</a>
 
 
-### @ts-check
+### 👍 @ts-check
 JavaScript 파일에서 오류를 활성화하려면 // @ts-check를 .js 파일의 첫 번째 줄에 추가하여 TypeScript가 오류를 발생시키도록 합니다. TypeScript는 여러 오류를 제공할 수 있습니다. 이러한 오류를 무시하고 싶다면 // @ts-ignore 또는 // @ts-expect-error를 추가하여 특정 줄의 오류를 무시할 수 있습니다.
 <a href="https://www.typescriptlang.org/docs/handbook/intro-to-js-ts.html#ts-check" target="_blank">ts-check</a>
 
-#### JSDoc Reference
+### 👍 JSDoc Reference
 JSDoc 주석을 사용하여 JavaScript 파일에 type 정보를 제공할 수 있습니다. (자바스크립트 파일에서 타입 정보를 제공할 수 있습니다.)
 <a href="https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html" target="_blank">jsdoc-supported-types</a>
 
-#### @param, @returns
+### 👍 @param, @returns
 ```javaScript
 /**
 * @param {string} p1 - A string param.
